@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs'
-import User from '../models/usermodel.js'
+import User from '../models/userModel.js'
 import { genToken } from '../config/token.js'
 import transporter from '../config/nodemailer.js'
 export const signup = async (req, res) => {
@@ -52,11 +52,12 @@ export const signup = async (req, res) => {
 
 export const signin = async (req, res) => {
   try {
-
     const { username, password } = req.body
     let user = await User.findOne({ username })
     if (!password || !username) {
-      return res.status(400).json({ message: 'All fields are required for this' })
+      return res
+        .status(400)
+        .json({ message: 'All fields are required for this' })
     }
 
     if (!user) {
@@ -163,7 +164,10 @@ export const resetPassword = async (req, res) => {
     if (!user) {
       return res.status(400).json({ message: 'User not found' })
     }
-    if (user.passwordResetOtp !== otp || user.passwordResetOtpExpireAt < Date.now()) {
+    if (
+      user.passwordResetOtp !== otp ||
+      user.passwordResetOtpExpireAt < Date.now()
+    ) {
       return res.status(400).json({ message: 'Invalid or expired OTP' })
     }
     const hashPassword = await bcrypt.hash(newPassword, 10)
@@ -183,4 +187,3 @@ export const resetPassword = async (req, res) => {
     })
   }
 }
-

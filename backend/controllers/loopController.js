@@ -1,8 +1,8 @@
-import User from '../models/userModel'
+import User from '../models/userModel.js'
 import uploadOnCloudinary from '../config/cloudinary.js'
-import Loop from '../models/loopModel'
+import Loop from '../models/loopModel.js'
 
-export const loopController = async (req, res) => {
+export const loopUpload = async (req, res) => {
   try {
     const userId = req.userId
     const { caption } = req.body

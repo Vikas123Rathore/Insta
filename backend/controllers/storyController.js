@@ -1,6 +1,6 @@
 import Story from '../models/storyModel.js'
-import User from '../models/usermodel.js'
-
+import User from '../models/userModel.js'
+import uploadOnCloudinary from '../config/cloudinary.js'
 export const uploadStory = async (req, res) => {
   try {
     const user = await User.findById(req.userId)
