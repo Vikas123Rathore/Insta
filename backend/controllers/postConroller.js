@@ -1,6 +1,6 @@
 import uploadOnCloudinary from '../config/cloudinary.js'
 import Post from '../models/postModel.js'
-import User from '../models/usermodel.js'
+import User from '../models/userModel.js'
 
 export const createPost = async (req, res) => {
   try {
